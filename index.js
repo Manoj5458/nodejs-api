@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const programmingLanguagesRouter = require("./routes/programmingLanguages");
+const tweetsRouter = require("./routes/tweetsRouter");
 
 app.use(express.json());
 app.use(
@@ -14,14 +14,13 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 
-app.use("/programming-languages", programmingLanguagesRouter);
+app.use("/tweets", tweetsRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);
   res.status(statusCode).json({ message: err.message });
-
   return;
 });
 
