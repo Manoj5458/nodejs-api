@@ -7,11 +7,7 @@ function validateInputs(tweet) {
     if (body) {
         return body;
     }
-    const username = validateUsername(tweet.username);
-    if (username) {
-        return username;
-    }
-    const email = validateEmail(tweet.Email);
+    const email = validateEmail(tweet.email);
     if (email) {
         return email;
     }
@@ -28,22 +24,6 @@ const validateBody = (tweetBody) => {
         return "Tweet cannot be greater than 140 characters";
     }
     console.log("validated body");
-    return false;
-}
-
-const validateUsername = (username) => {
-    console.log("validating username");
-    const specialChar = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    if (username == null || username.length <= 0) {
-        return "Username cannot be Empty";
-    }
-    else if (username.length > 50) {
-        return "Username cannot be greater than 50 characters";
-    }
-    else if (specialChar.test(username)) {
-        return "Username cannot contain special characters";
-    }
-    console.log("validated username");
     return false;
 }
 
@@ -76,7 +56,6 @@ const validateId = async (id) => {
 module.exports = {
     validateInputs,
     validateBody,
-    validateUsername,
     validateEmail,
     validateId
 };

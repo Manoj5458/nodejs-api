@@ -20,7 +20,7 @@ async function getTweetsByName(id) {
 }
 
 async function create(tweet) {
-  const result = await helper.runQuery(`INSERT INTO tweet (body, date, update_at username, userId,Email) VALUES ('${tweet.body}', now(), now(), '${tweet.username}','${tweet.userId}','${tweet.Email}');`);
+  const result = await helper.runQuery(`INSERT INTO tweet (body, created_at, email,updated_at) VALUES ('${tweet.body}', now(), '${tweet.email}',now());`);
   let message = "Error in creating Tweets";
   if (result.affectedRows) {
     message = "Tweets created successfully";
@@ -33,7 +33,7 @@ async function updateTweetBody(id, tweets) {
   try {
     const result = await helper.runQuery(
       `UPDATE tweet 
-    SET body="${tweets.body}"
+    SET body="${tweets.body}",created_at=current_date()
     WHERE id=${id}`
     );
     let message = "Error in updating Tweets";
