@@ -1,9 +1,6 @@
 const db = require("./services/db");
 
-function getOffset(currentPage = 1, listPerPage) {
-  return (currentPage - 1) * [listPerPage];
-}
-
+// Running db queries
 const runQuery = async (query) => {
   try {
     return await db.query(query);
@@ -12,6 +9,7 @@ const runQuery = async (query) => {
   }
 }
 
+//check record 
 function emptyOrRows(rows) {
   if (!rows) {
     return [];
@@ -20,7 +18,6 @@ function emptyOrRows(rows) {
 }
 
 module.exports = {
-  getOffset,
   emptyOrRows,
   runQuery
 };

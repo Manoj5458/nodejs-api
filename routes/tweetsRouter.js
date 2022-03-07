@@ -13,9 +13,10 @@ router.get("/", async function (req, res, next) {
   }
 });
 
+/* GET tweets by ID. */
 router.get("/:id", async function (req, res, next) {
   try {
-    res.json(await tweetService.getTweetsByName(req.params.id));
+    res.json(await tweetService.getTweetsById(req.params.id));
   } catch (err) {
     if (err.response == 400) {
       console.error("the required id is not found");
@@ -24,6 +25,7 @@ router.get("/:id", async function (req, res, next) {
     next(err);
   }
 });
+
 
 /* POST tweet */
 router.post("/", async function (req, res, next) {

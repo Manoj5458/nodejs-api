@@ -1,8 +1,8 @@
 const db = require("./services/db");
 const helper = require("./helper");
 
+//validate all fields
 function validateInputs(tweet) {
-    console.log("validating inputs");
     const body = validateBody(tweet.body);
     if (body) {
         return body;
@@ -11,24 +11,22 @@ function validateInputs(tweet) {
     if (email) {
         return email;
     }
-    console.log("validated inputs");
     return false;
 }
 
+//validating input tweet
 const validateBody = (tweetBody) => {
-    console.log("validating body");
     if (tweetBody == null || tweetBody.length <= 0) {
         return "Tweet cannot be empty";
     }
     else if (tweetBody.length > 140) {
         return "Tweet cannot be greater than 140 characters";
     }
-    console.log("validated body");
     return false;
 }
 
+//validating useremail
 const validateEmail = (email) => {
-    console.log("validating email");
     if (email == null || email.length <= 0) {
         return "Email cannot be Empty";
     }
@@ -40,10 +38,10 @@ const validateEmail = (email) => {
     )) {
         return "Please enter a valid Email address";
     }
-    console.log("validated Email");
     return false
 }
 
+//validating id
 const validateId = async (id) => {
     try {
         const idResult = await helper.runQuery(`select id from tweet where id=${id}`);

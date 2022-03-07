@@ -2,7 +2,7 @@ const db = require("./db");
 const helper = require("../helper");
 
 
-
+// Get list of tweets 
 async function getTweets() {
   const rows = await helper.runQuery('select * from tweet')
   const data = helper.emptyOrRows(rows);
@@ -11,7 +11,8 @@ async function getTweets() {
   };
 }
 
-async function getTweetsByName(id) {
+// Get list of tweets by ID
+async function getTweetsById(id) {
   const rows = await helper.runQuery(`select * from tweet where id=${id}`);
   const data = helper.emptyOrRows(rows);
   return {
@@ -19,6 +20,8 @@ async function getTweetsByName(id) {
   };
 }
 
+
+// Insert new tweet
 async function create(tweet) {
   const result = await helper.runQuery(`INSERT INTO tweet (body, created_at, email,updated_at) VALUES ('${tweet.body}', now(), '${tweet.email}',now());`);
   let message = "Error in creating Tweets";
@@ -29,6 +32,7 @@ async function create(tweet) {
 
 }
 
+//Update Tweet 
 async function updateTweetBody(id, tweets) {
   try {
     const result = await helper.runQuery(
@@ -46,6 +50,7 @@ async function updateTweetBody(id, tweets) {
   }
 }
 
+//Delete Tweet
 async function remove(id) {
   const result = await helper.runQuery(
     `DELETE FROM tweet WHERE id=${id}`
@@ -62,7 +67,7 @@ async function remove(id) {
 
 module.exports = {
   getTweets,
-  getTweetsByName,
+  getTweetsById,
   create,
   updateTweetBody,
   remove
