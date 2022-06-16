@@ -4,8 +4,10 @@ const helper = require("../helper");
 
 // Get list of tweets 
 async function getTweets() {
-  const rows = await helper.runQuery('select * from tweet')
+  const rows = await helper.runQuery('select * from tweet');
+  // console.log(rows);
   const data = helper.emptyOrRows(rows);
+  // console.log(data);
   return {
     data,
   };
